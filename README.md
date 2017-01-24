@@ -25,10 +25,10 @@ VagrantDirConfig; 			ENV1 Result; 	ENV2 Result;
 
 1. xm-lab-provisioned-by-puppet-1node
  * ENV1 OK
- * ENV2 Not tested
+ * ENV2 OK
 2. xm-lab-provisioned-by-puppet-2nodes
  * ENV1 OK
- * ENV2 Not tested
+ * ENV2 OK
 3. xm-lab-ssh
  * EVN1 OK
  * ENV2 OK
