@@ -1,6 +1,12 @@
 # vagrant-linux-labs
 Set of Vagrant configuration for Linux Labs
 
+## Vagrant configs
+
+1. xm-lab-provisioned-by-puppet-1node - example of one Debian node provisioned by Puppet
+2. xm-lab-provisioned-by-puppet-2nodes - example of two Debian nodes provisioned by Puppet
+3. xm-lab-ssh - [in progress] two nodes for client-server ssh connectivity & tests
+
 ## Tested on Environments
 
 1. ENV1
@@ -17,13 +23,13 @@ Set of Vagrant configuration for Linux Labs
 
 VagrantDirConfig; 			ENV1 Result; 	ENV2 Result;
 
-1. xm-lab-ssh
+1. xm-lab-provisioned-by-puppet-1node
+ * ENV1 OK
+ * ENV2 Not tested
+2. xm-lab-provisioned-by-puppet-2nodes
+ * ENV1 OK
+ * ENV2 Not tested
+3. xm-lab-ssh
  * EVN1 OK
  * ENV2 OK
-2. xm-lab-provisioned-by-puppet-1node
- * ENV1 OK
- * ENV2 Not tested
-3. xm-lab-provisioned-by-puppet-2nodes
- * ENV1 OK
- * ENV2 Not tested
 
