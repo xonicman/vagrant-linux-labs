@@ -20,14 +20,19 @@ Vagrant.configure("2") do |config|
     vb.memory = "128"
   end
 
-  config.vm.define "sshsrv" do |node|
-        node.vm.network "private_network", ip: "192.168.77.11"
-        node.vm.hostname = "sshsrv.lab.itmz.pl"
+  config.vm.define "server" do |node|
+        node.vm.network "private_network", ip: "192.168.77.10"
+        node.vm.hostname = "server"
   end
 
-  config.vm.define "sshcli" do |node|
+  config.vm.define "client01" do |node|
+	node.vm.network "private_network", ip: "192.168.77.11"
+	node.vm.hostname = "client01"
+  end
+
+  config.vm.define "client02" do |node|
 	node.vm.network "private_network", ip: "192.168.77.12"
-	node.vm.hostname = "sshcli.lab.itmz.pl"
+	node.vm.hostname = "client02"
   end
 
   # Disable automatic box update checking. If you disable this, then
