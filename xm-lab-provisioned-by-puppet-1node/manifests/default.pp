@@ -11,4 +11,5 @@ file { "xonicman.box":
 package { "htop": ensure => installed, require => Exec["apt-get update"], }
 package { "vim": ensure => installed, require => Exec["apt-get update"], }
 package { "tree": ensure => installed, require => Exec["apt-get update"], }
+package { "screen": ensure => installed, require => Exec["apt-get update"], }
 
