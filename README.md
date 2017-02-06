@@ -7,6 +7,7 @@ Set of Vagrant configuration for Linux Labs
 2. xm-lab-provisioned-by-puppet-2nodes - example of two Debian nodes provisioned by Puppet
 3. xm-lab-ssh - two nodes for client-server ssh connectivity & tests
 4. xm-lab-firewall - five nodes with firewall in the middle for firewall lab, LAN schema at /lab.box/schema.txt on all machines
+4. xm-lab-puppet - five nodes: puppetmaster, two Debian nodes, two CentOS nodes
 
 ## Tested on Environments
 
@@ -37,6 +38,10 @@ Set of Vagrant configuration for Linux Labs
  * EVN1 OK
  * ENV2 OK
 4. xm-lab-firewall
+ * ENV1 not tested
+ * ENV2 not tested
+ * ENV3 OK
+5. xm-lab-puppet
  * ENV1 not tested
  * ENV2 not tested
  * ENV3 OK
