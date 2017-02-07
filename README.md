@@ -39,10 +39,10 @@ Set of Vagrant configuration for Linux Labs
  * ENV2 OK
 4. xm-lab-firewall
  * ENV1 not tested
- * ENV2 not tested
+ * ENV2 OK
  * ENV3 OK
 5. xm-lab-puppet
  * ENV1 not tested
- * ENV2 not tested
+ * ENV2 OK
  * ENV3 OK
 
