@@ -2,7 +2,7 @@
 
 #define /etc/hosts for all machines
 class hostsfile {
-  host { 'master.lab.itmz.pl': ip => '192.168.14.100', host_aliases => [ 'master', 'server', 'puppetmaster' ], }
+  host { 'master.lab.itmz.pl': ip => '192.168.14.100', host_aliases => [ 'master', 'server', 'puppetmaster', 'puppet' ], }
     host { 'agent01.lab.itmz.pl': ip => '192.168.14.101', host_aliases => 'agent01', }
     host { 'agent02.lab.itmz.pl': ip => '192.168.14.102', host_aliases => 'agent02', }
     host { 'agent03.lab.itmz.pl': ip => '192.168.14.103', host_aliases => 'agent03', }
