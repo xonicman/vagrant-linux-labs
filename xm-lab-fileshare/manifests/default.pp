@@ -84,6 +84,11 @@ node master {
     require => Package['puppetmaster'],
     creates => '/etc/puppet/modules/nfs',
   }
+  exec { 'install_puppet_module_derdanne_vsftpd':
+    command => '/usr/bin/puppet module install example42-vsftpd --version 2.0.15',
+    require => Package['puppetmaster'],
+    creates => '/etc/puppet/modules/vsftpd',
+  }
   file { '/usr/local/sbin/puppet.parser.validate.syntax.sh':
     owner   => root,
     group   => root,
