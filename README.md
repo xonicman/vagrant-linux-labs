@@ -8,7 +8,8 @@ Set of Vagrant configuration for Linux Labs
 3. xm-lab-ssh - two nodes for client-server ssh connectivity & tests
 4. xm-lab-firewall - five nodes with firewall in the middle for firewall lab, LAN schema at /lab.box/schema.txt on all machines
 5. xm-lab-puppet - five nodes: puppetmaster, two Debian nodes, two CentOS nodes
-6. xm-lab-twonodes -debian8 & centos7, without extra config, for variuous lab training
+6. xm-lab-twonodes - debian8 & centos7, without extra config, for variuous lab training
+7. xm-lab-fileshare - demo for nfs filesharing
 
 ## Tested on Environments
 
@@ -47,6 +48,10 @@ Set of Vagrant configuration for Linux Labs
  * ENV2 OK
  * ENV3 OK
 6. xm-lab-twonodes
+ * ENV1 not tested
+ * ENV2 not tested
+ * ENV3 OK
+7. xm-lab-fileshare
  * ENV1 not tested
  * ENV2 not tested
  * ENV3 OK
