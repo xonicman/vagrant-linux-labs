@@ -1,6 +1,8 @@
 node 'server' {
 
   ###  NFS SERVER
+  ###  remember to run module install on puppetmaster:
+  ###  puppet module install derdanne-nfs --version 1.0.2  
   class { '::nfs':
     server_enabled => true
   }
