@@ -1,6 +1,11 @@
 node 'server' {
 
 /**
+  ### SAMBA SERVER
+  include xm_samba::server
+**/
+
+/**
   ### FTP SERVER - vsftpd
   ### remember to run module install on puppetmaster:
   ### puppet module install example42-vsftpd --version 2.0.15
@@ -22,9 +27,9 @@ node 'server' {
 **/
 
 /**
-  ###  NFS SERVER
-  ###  remember to run module install on puppetmaster:
-  ###  puppet module install derdanne-nfs --version 1.0.2  
+  ### NFS SERVER
+  ### remember to run module install on puppetmaster:
+  ### puppet module install derdanne-nfs --version 1.0.2  
   class { '::nfs':
     server_enabled => true
   }
@@ -38,9 +43,15 @@ node 'server' {
   }
 **/
 
+
 }
 
 node 'client' {
+
+/**
+  ### SAMBA CLIENT
+  include xm_samba::client
+**/
 
 /**
   ### FTP CLIENT
