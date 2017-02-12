@@ -79,6 +79,11 @@ node master {
     require => Package['puppetmaster'],
     creates => '/etc/puppet/modules/inifile',
   }
+  exec { 'install_puppet_module_derdanne_nfs':
+    command => '/usr/bin/puppet module install derdanne-nfs --version 1.0.2',
+    require => Package['puppetmaster'],
+    creates => '/etc/puppet/modules/nfs',
+  }
   file { '/usr/local/sbin/puppet.parser.validate.syntax.sh':
     owner   => root,
     group   => root,
