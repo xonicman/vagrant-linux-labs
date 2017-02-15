@@ -10,6 +10,7 @@ Set of Vagrant configuration for Linux Labs
 5. xm-lab-puppet - five nodes: puppetmaster, two Debian nodes, two CentOS nodes
 6. xm-lab-twonodes - debian8 & centos7, without extra config, for variuous lab training
 7. xm-lab-fileshare - demo for samba, ftp & nfs filesharing
+8. xm-lab-mysql-cluster - demo for MySQL 5.5 cluster with Heartbeat, 4 nodes: puppetmaster, mysql01-02 & client
 
 ## Tested on Environments
 
@@ -52,6 +53,10 @@ Set of Vagrant configuration for Linux Labs
  * ENV2 not tested
  * ENV3 OK
 7. xm-lab-fileshare
+ * ENV1 not tested
+ * ENV2 not tested
+ * ENV3 OK
+8. xm-lab-mysql-cluster
  * ENV1 not tested
  * ENV2 not tested
  * ENV3 OK
