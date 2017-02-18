@@ -10,8 +10,17 @@ class hostsfile {
     host { 'n17v2.lab.itmz.pl': ip => '10.17.21.200', host_aliases => [ 'n17v2', 'vpnclient', ], }
 }
 
+class changeps1 {
+ file_line {'set_PS1':
+    path  => '/etc/bash.bashrc',
+    line  => 'PS1="\[\e[1;34m\][\u@\h \w]\$\[\e[m\] "',
+    match => '^\#?PS1=',
+  }
+}
+
 class baseconfig {
   include hostsfile
+  include changeps1
 }
 
 node 'n1a' {
@@ -34,18 +43,17 @@ node 'n2b' {
   network::interface { 'eth3': ipaddress => '10.17.2.22', netmask => '255.255.255.0', }
 }
 
-node 'va' {
+node 'vs' {
   include baseconfig
   network::interface { 'eth2': ipaddress => '10.17.1.100', netmask => '255.255.255.0', }
   network::interface { 'eth4': ipaddress => '10.17.21.100', netmask => '255.255.255.0', }
 }
 
-node 'vb' {
+node 'vc' {
   include baseconfig
   network::interface { 'eth3': ipaddress => '10.17.2.200', netmask => '255.255.255.0', }
   network::interface { 'eth4': ipaddress => '10.17.21.200', netmask => '255.255.255.0', }
 }
-
 
 
 node 'default' {
