@@ -99,7 +99,7 @@ node master {
   }
 }
 
-node va, vb {
+node vs, vc {
   include baseconfig
   include puppetagent
   package { 'openvpn': ensure => installed, require => Exec['refresh-repository'], }
