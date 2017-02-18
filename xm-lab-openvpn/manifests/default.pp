@@ -3,8 +3,8 @@
 #define /etc/hosts for all machines
 class hostsfile {
     host { 'master.lab.itmz.pl': ip => '192.168.21.253', host_aliases => [ 'master', 'puppetmaster', 'puppet' ], }
-    host { 'va.lab.itmz.pl': ip => '192.168.21.100', host_aliases => 'va', }
-    host { 'vb.lab.itmz.pl': ip => '192.168.21.200', host_aliases => 'vb', }
+    host { 'vs.lab.itmz.pl': ip => '192.168.21.100', host_aliases => 'vs', }
+    host { 'vc.lab.itmz.pl': ip => '192.168.21.200', host_aliases => 'vc', }
     host { 'n1a.lab.itmz.pl': ip => '192.168.21.11', host_aliases => 'n1a', }
     host { 'n1b.lab.itmz.pl': ip => '192.168.21.12', host_aliases => 'n1b', }
     host { 'n2a.lab.itmz.pl': ip => '192.168.21.21', host_aliases => 'n2a', }
@@ -14,6 +14,7 @@ class hostsfile {
 #base configuration, can be used for all nodes
 class baseconfig {
   include hostsfile
+  include schema
   
   $exec_update_command = $::operatingsystem ? {
     CentOS => '/bin/echo yum does not need to update',
@@ -108,4 +109,34 @@ node va, vb {
 node default {
   include baseconfig
   include puppetagent
+}
+
+
+class schema { 
+
+  file {'/lab/schema.txt':
+    content => 
+"                10.17.2.0/24                    10.17.21.0/24                    10.17.1.0/24
++------------+                                                                                +----------------+
+|n2a         |              +------------------+            +------------------+              |             n1a|
+|            |              | vc               |eth4    eth4|               vs |              |                |
+|    [n17n2a]|eth3          |         [.21.200]+------------+[.21.100]         |          eth2|[n17n1a]        |
+|     [.2.11]+-------+      |       [vpnclient]|            |[vpnserver]       |      +-------+[.1.11]         |
+|            |       |      |                  |            |                  |      |       |                |
++------------+       |      |                  |            |                  |      |       +----------------+
+                     |      |                  |            |                  |      |
+                     |  eth3|[n17n2r]          |            |          [n17n1r]|eth2  |
++------------+       +------+[.2.200]          |            |          [.1.100]+------+       +----------------+
+|n2b         |       |      |                  |            |                  |      |       |             n1b|
+|            |       |      |                  |            |                  |      |       |                |
+|    [n17n2b]|eth3   |      |                  |            |                  |      |   eth2|[n17n1b]        |
+|     [.2.22]+-------+      |                  |            |                  |      +-------+[.1.22]         |
+|            |              +------------------+            +------------------+              |                |
++------------+                                                                                +----------------+
+
+                                    [dns/hosts names for 10.17.0.0/16 IPs]
+          There is also puppet-master server in lab (hostname: master) for initial environment config.
+",
+ }
+
 }
