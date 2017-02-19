@@ -13,6 +13,7 @@ Set of Vagrant configuration for Linux Labs
 08. xm-lab-mysql-cluster - demo for MySQL 5.5 cluster with Heartbeat, 4 nodes: puppetmaster, mysql01-02 & client
 09. xm-lab-4nodes - Debian8 x2, Centos7 x2demo, 4 extra interfaces for each node, can be used for network tools testing
 10. xm-lab-openvpn - 6 hosts (puppetmaster for initial config, vpnclient, vpnserver and 4 hosts to simulate site-to-site vpn)
+11. xm-lab-bacula - 4 hosts (puppetmaster for initial config, bacula server with all components, client01 and client02)
 
 ## Imporatant notice - ulimit
 
