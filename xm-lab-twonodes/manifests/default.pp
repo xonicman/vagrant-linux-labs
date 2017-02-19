@@ -35,4 +35,16 @@ node default {
   package { 'tree': ensure => installed, require => Exec['refresh-repository'], }
   package { 'screen': ensure => installed, require => Exec['refresh-repository'], }
 
+  exec { 'custom_PS1_for_root':
+    command => 'echo "PS1=\"\[\e[1;34m\][\u@\h \W]\$\[\e[m\] \"" >> /root/.bashrc; touch /root/.custom.ps1.done',
+    creates => '/root/.custom.ps1.done',
+    path    => [ '/bin/', '/sbin/', '/usr/bin', ],
+  }
+
+  exec { 'custom_PS1_for_vagrant':
+    command => 'echo "PS1=\"\[\e[1;36m\][\u@\h \W]\$\[\e[m\] \"" >> /home/vagrant/.bashrc; touch /home/vagrant/.custom.ps1.done',
+    creates => '/home/vagrant/.custom.ps1.done',
+    path    => [ '/bin/', '/sbin/', '/usr/bin', ],
+  }
+
 }
