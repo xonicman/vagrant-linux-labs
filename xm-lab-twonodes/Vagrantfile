@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "debian8" do |node|
         node.vm.hostname = "debian8.lab.itmz.pl"
-        node.vm.network "private_network", ip: "192.168.101.8"
+        node.vm.network "private_network", ip: "192.168.102.8"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
   end
@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "centos7" do |node|
 	node.vm.box = "geerlingguy/centos7"
         node.vm.hostname = "centos7.lab.itmz.pl"
-        node.vm.network "private_network", ip: "192.168.101.7"
+        node.vm.network "private_network", ip: "192.168.102.7"
   	node.vm.provision "shell", inline: "sudo yum install -y puppet; sleep 10"
   	node.vm.provision "puppet" 
         node.vm.provision "shell", inline: "systemctl restart network.service"

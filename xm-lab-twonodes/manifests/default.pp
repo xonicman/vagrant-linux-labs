@@ -1,7 +1,7 @@
 node default {
 
-  host { 'debian8.lab.itmz.pl': ip => '192.168.101.8', host_aliases => [ 'debian8', 'debian', 'd', ], }
-  host { 'centos7.lab.itmz.pl': ip => '192.168.101.7', host_aliases => [ 'centos7', 'centos', 'c', ], }
+  host { 'debian8.lab.itmz.pl': ip => '192.168.102.8', host_aliases => [ 'debian8', 'debian', 'd', ], }
+  host { 'centos7.lab.itmz.pl': ip => '192.168.102.7', host_aliases => [ 'centos7', 'centos', 'c', ], }
 
   service { "puppet":
 	ensure => stopped,
