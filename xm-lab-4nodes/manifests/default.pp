@@ -1,9 +1,9 @@
 node default {
 
-  host { 'node41.lab.itmz.pl': ip => '192.168.11.41', host_aliases => [ 'node41', 'n41', 'd1', ], }
-  host { 'node42.lab.itmz.pl': ip => '192.168.11.42', host_aliases => [ 'node42', 'n42', 'd2', ], }
-  host { 'node43.lab.itmz.pl': ip => '192.168.11.43', host_aliases => [ 'node43', 'n43', 'c1', ], }
-  host { 'node44.lab.itmz.pl': ip => '192.168.11.44', host_aliases => [ 'node43', 'n44', 'c2', ], }
+  host { 'node41.lab.itmz.pl': ip => '192.168.41.41', host_aliases => [ 'node41', 'n41', 'd1', ], }
+  host { 'node42.lab.itmz.pl': ip => '192.168.41.42', host_aliases => [ 'node42', 'n42', 'd2', ], }
+  host { 'node43.lab.itmz.pl': ip => '192.168.41.43', host_aliases => [ 'node43', 'n43', 'c1', ], }
+  host { 'node44.lab.itmz.pl': ip => '192.168.41.44', host_aliases => [ 'node43', 'n44', 'c2', ], }
 
   service { "puppet":
 	ensure => stopped,
@@ -64,7 +64,7 @@ class schemafile {
       eth2      +--------+       |              |                 |
        +        |        |       |              |                 |
        |        | node42 |eth1+-----------------+ eg.             |
-       |        |  Deb8  |       |              | 192.168.11.x/24 |
+       |        |  Deb8  |       |              | 192.168.41.x/24 |
        |        |        |       +              |                 |
        |        +--------+      eth0            |                 |
        |           eth2      +--------+         |                 |
@@ -79,7 +79,7 @@ class schemafile {
        |            |            |
 +------+------------+------------+--------------------------------+
 |                                                                 |
-| vbox Private network #2 (ex. 192.168.12.x/24)                   |
+| vbox Private network #2 (ex. 192.168.42.x/24)                   |
 |                                                                 |
 +-----------------------------------------------------------------+
 ",], }

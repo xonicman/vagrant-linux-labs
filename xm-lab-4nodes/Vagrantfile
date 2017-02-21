@@ -23,20 +23,20 @@ Vagrant.configure("2") do |config|
         node.vm.hostname = "node41.lab.itmz.pl"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
-        node.vm.network "private_network", ip: "192.168.11.41"
-        node.vm.network "private_network", ip: "192.168.12.41", auto_config: false
-        node.vm.network "private_network", ip: "192.168.13.41", auto_config: false
-        node.vm.network "private_network", ip: "192.168.14.41", auto_config: false
+        node.vm.network "private_network", ip: "192.168.41.41"
+        node.vm.network "private_network", ip: "192.168.42.41", auto_config: false
+        node.vm.network "private_network", ip: "192.168.43.41", auto_config: false
+        node.vm.network "private_network", ip: "192.168.44.41", auto_config: false
   end
 
   config.vm.define "node42" do |node|
         node.vm.hostname = "node42.lab.itmz.pl"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
-        node.vm.network "private_network", ip: "192.168.11.42"
-        node.vm.network "private_network", ip: "192.168.12.42", auto_config: false
-        node.vm.network "private_network", ip: "192.168.13.42", auto_config: false
-        node.vm.network "private_network", ip: "192.168.14.42", auto_config: false
+        node.vm.network "private_network", ip: "192.168.41.42"
+        node.vm.network "private_network", ip: "192.168.42.42", auto_config: false
+        node.vm.network "private_network", ip: "192.168.43.42", auto_config: false
+        node.vm.network "private_network", ip: "192.168.44.42", auto_config: false
   end
 
   config.vm.define "node43" do |node|
@@ -44,10 +44,10 @@ Vagrant.configure("2") do |config|
 	node.vm.box = "geerlingguy/centos7"
   	node.vm.provision "shell", inline: "sudo yum install -y puppet; sleep 10"
   	node.vm.provision "puppet" 
-        node.vm.network "private_network", ip: "192.168.11.43"
-        node.vm.network "private_network", ip: "192.168.12.43", auto_config: false
-        node.vm.network "private_network", ip: "192.168.13.43", auto_config: false
-        node.vm.network "private_network", ip: "192.168.14.43", auto_config: false
+        node.vm.network "private_network", ip: "192.168.41.43"
+        node.vm.network "private_network", ip: "192.168.42.43", auto_config: false
+        node.vm.network "private_network", ip: "192.168.43.43", auto_config: false
+        node.vm.network "private_network", ip: "192.168.44.43", auto_config: false
   end
 
   config.vm.define "node44" do |node|
@@ -55,10 +55,10 @@ Vagrant.configure("2") do |config|
 	node.vm.box = "geerlingguy/centos7"
   	node.vm.provision "shell", inline: "sudo yum install -y puppet; sleep 10"
   	node.vm.provision "puppet" 
-        node.vm.network "private_network", ip: "192.168.11.44"
-        node.vm.network "private_network", ip: "192.168.12.44", auto_config: false
-        node.vm.network "private_network", ip: "192.168.13.44", auto_config: false
-        node.vm.network "private_network", ip: "192.168.14.44", auto_config: false
+        node.vm.network "private_network", ip: "192.168.41.44"
+        node.vm.network "private_network", ip: "192.168.42.44", auto_config: false
+        node.vm.network "private_network", ip: "192.168.43.44", auto_config: false
+        node.vm.network "private_network", ip: "192.168.44.44", auto_config: false
   end
 
   # Disable automatic box update checking. If you disable this, then
