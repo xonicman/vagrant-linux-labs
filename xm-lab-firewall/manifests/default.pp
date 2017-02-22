@@ -1,13 +1,15 @@
 #Puppet configuration for Vagrant hosts
 
+$subnet=101
+
 class hostsfile {
 	#this class provides proper /etc/hosts for all machines
 	#no DNS server needed ;-)
-
-	host { 'dmzserver': ip => '192.168.33.31',}	
-  	host { 'lanserver': ip => '192.168.44.41',}	
-  	host { 'lanclient': ip => '192.168.44.42',}	
-  	host { 'internet': ip => '192.168.99.99',}
+   
+  	host { 'lanserver': ip => "10.$subnet.33.31",}	
+  	host { 'lanclient': ip => "10.$subnet.33.32",}	
+	host { 'dmzserver': ip => "10.$subnet.66.61",}	
+  	host { 'internet': ip  => "10.$subnet.99.99",}
   	
 }
 
@@ -33,16 +35,14 @@ class baseconfig {
 	package { "netcat": ensure => installed, require => Exec["apt-get update"], }
 	package { "tcpdump": ensure => installed, require => Exec["apt-get update"], }
 	package { "nmap": ensure => installed, require => Exec["apt-get update"], }
-	#package { "": ensure => installed, require => Exec["apt-get update"], }
 
 }
 
-
 class lanzonesettings {
-	host { 'firewall': ip => '192.168.44.111',}	
-  	exec { 'route_192':
-    		command => 'ip route add 192.168.0.0/16 via 192.168.44.111',
-		unless 	=> 'ip route show | grep "192.168.0.0/16" 2> /dev/null',
+	host { 'firewall': ip => "10.$subnet.33.111",}	
+  	exec { "route_$subnet":
+    		command => "ip route add 10.$subnet.0.0/16 via 10.$subnet.33.111",
+		unless 	=> "ip route show | grep 10.$subnet.0.0/16 2> /dev/null",
     		path    => [ '/sbin/', '/bin/' ], 
   	}
 
@@ -66,13 +66,12 @@ node firewall {
 	package { "iptables-persistent": ensure => installed, require => Exec["apt-get update"], }
 }
 
-
 node dmzserver {
 	include baseconfig
-	host { 'firewall': ip => '192.168.33.111',}	
-  	exec { 'route_192':
-    		command => 'ip route add 192.168.0.0/16 via 192.168.33.111',
-		unless 	=> 'ip route show | grep "192.168.0.0/16" 2> /dev/null',
+	host { 'firewall': ip => "10.$subnet.66.111",}	
+  	exec { "route_$subnet":
+    		command => "ip route add 10.$subnet.0.0/16 via 10.$subnet.66.111",
+		unless 	=> "ip route show | grep 10.$subnet.0.0 2> /dev/null",
     		path    => [ '/sbin/', '/bin/' ], 
   	}
 }
@@ -89,10 +88,10 @@ node lanclient {
 
 node internet {
 	include baseconfig
-	host { 'firewall': ip => '192.168.99.111',}
-  	exec { 'route_192':
-    		command => 'ip route add 192.168.0.0/16 via 192.168.99.111',
-		unless 	=> 'ip route show | grep "192.168.0.0/16" 2> /dev/null',
+	host { 'firewall': ip => "10.$subnet.99.111",}
+  	exec { "route_$subnet":
+    		command => "ip route add 10.$subnet.0.0/16 via 10.$subnet.99.111",
+		unless 	=> "ip route show | grep 10.$subnet.0.0/16 2> /dev/null",
     		path    => [ '/sbin/', '/bin/' ], 
   	}
 }
@@ -106,11 +105,8 @@ class schemafile {
 "+----------------------------------------------------------------------------------------------------+
 |                                                                                                    |
 |                                   Vagrant / VirtualBox Hypervisor                                  |
-+vbox NAT network 10.0.x.x                                                                           |
+| vbox NAT network 10.0.x.0/24                                                                       |
 +-------+---------------------------------+--------------------------------+-----------+---------+---+
-        |                                 |                                |           |         |
-        |                                 |                                |           |         |
-        |                                 |                                |           |         |
         |                                 |                                |           |         |
         |                                 |                                |           |         |
         |                                 |                                +           |         |
@@ -121,14 +117,14 @@ class schemafile {
        eth0                              eth0                  +--+eth1|  IP:41    |   |         |
 +----------------+                   +----------+              |       |           |   |         |
 |    internet    |                   | firewall |              |       +-----------+   |         |
-|                |  192.168.99.x/24  |          |              |                       |         |
+|                |   10.$subnet.99.x/24  |          |              |                       |         |
 |     IP:99      |eth3+--------+eth3 |  IP:111  |eth1+---------+-------+               +         |
-|                |                   |          |      192.168.44.x/24 |              eth0       |
+|                |                   |          |      10.$subnet.33.x/24  |              eth0       |
 +----------------+                   +----------+                      |      +-----------+      |
                                          eth2                          |      | lanclient |      |
                                           +                            |      |           |      |
                                           |                            +-+eth1|  IP:42    |      |
-                                          |192.168.33.x/24                    |           |      |
+                                          |10.$subnet.66.x/24                     |           |      |
                                           |                                   +-----------+      |
                                           +                                                      |
                                          eth2                                                    |
