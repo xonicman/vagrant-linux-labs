@@ -1,5 +1,15 @@
 # vagrant-linux-labs
-Set of Vagrant configuration for Linux Labs
+Set of Vagrant configuration for Linux Labs.
+
+You need to install Vagrant and Oracle VirtualBox (tested on V 1.9.1 and OVB 5.1..14r112924).
+
+Then:
+
+git clone https://github.com/xonicman/vagrant-linux-labs.git
+cd vagrant-linux-labs/NAME_OF_LAB
+vagrant up
+vagrant status
+vagrant ssh NAME_OF_MACHINE
 
 ## Vagrant configs
 
@@ -19,8 +29,3 @@ Set of Vagrant configuration for Linux Labs
 ## Imporatant notice - ulimit
 
 Please keep in mind that some of the labs have many virtual machines. To run such, you need to set a higher value for the limit of open files on a host system. The author of this readme had problems with running xm-lab-openvpn with ulimit set to 1024 files. After changing that to 8196 value, the problem disappeared.
-
-## All tested on
-
- * Vagrant 1.9.1 + Oracle VirtualBox 5.1.14r112924
-
