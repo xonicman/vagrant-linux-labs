@@ -46,6 +46,20 @@ class baseconfig {
         ensure => stopped,
         enable => false,
   }
+
+  #add TERM=xterm for better screen compatibility
+  exec { 'TERM xterm root':
+    command => 'echo "TERM=xterm" >> /root/.bashrc',
+    unless  => 'grep "^TERM=xterm$" /root/.bashrc 2> /dev/null',
+    path    => [ '/bin/', '/sbin/' ],
+  }
+
+  exec { 'TERM xterm vagrant':
+    command => 'echo "TERM=xterm" >> /home/vagrant/.bashrc',
+    unless  => 'grep "^TERM=xterm$" /home/vagrant/.bashrc 2> /dev/null',
+    path    => [ '/bin/', '/sbin/' ],
+  }
+
 }
 
 #config for every puppet agent
