@@ -23,38 +23,37 @@ Vagrant.configure("2") do |config|
     vb.memory = "128"
   end
 
+  SUBNET=101
+
   config.vm.define "master" do |node|
+        node.vm.hostname = "master.lab.itmz.pl"
+        node.vm.network "private_network", ip: "192.168.#{SUBNET}.220"
+	node.vm.synced_folder "puppetmaster", "/etc/puppet", owner: "root", group: "root"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
-        node.vm.network "private_network", ip: "192.168.17.100"
-        node.vm.hostname = "master.lab.itmz.pl"
-	node.vm.synced_folder "puppetmaster", "/etc/puppet", owner: "root", group: "root"
   end
 
   config.vm.define "mysql01" do |node|
-  	node.vm.box = "cargomedia/debian-7-amd64-plain"
+        node.vm.hostname = "mysql01.lab.itmz.pl"
+        node.vm.network "private_network", ip: "192.168.#{SUBNET}.221"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
-        node.vm.network "private_network", ip: "192.168.17.101"
-        node.vm.network "private_network", ip: "192.168.18.101"
-        node.vm.hostname = "mysql01.lab.itmz.pl"
   end
 
   config.vm.define "mysql02" do |node|
-  	node.vm.box = "cargomedia/debian-7-amd64-plain"
+        node.vm.hostname = "mysql02.lab.itmz.pl"
+        node.vm.network "private_network", ip: "192.168.#{SUBNET}.222"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
-        node.vm.network "private_network", ip: "192.168.17.102"
-        node.vm.network "private_network", ip: "192.168.18.102"
-        node.vm.hostname = "mysql02.lab.itmz.pl"
   end
+  
+  # 192.168.#{SUBNET}.223 will be used for Floating IP MySQL cluster
 
   config.vm.define "client" do |node|
+        node.vm.hostname = "client.lab.itmz.pl"
+        node.vm.network "private_network", ip: "192.168.#{SUBNET}.224"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
-        node.vm.network "private_network", ip: "192.168.17.111"
-        node.vm.network "private_network", ip: "192.168.18.11"
-        node.vm.hostname = "client.lab.itmz.pl"
   end
 
 
