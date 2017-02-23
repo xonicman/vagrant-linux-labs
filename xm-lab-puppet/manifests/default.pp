@@ -1,6 +1,6 @@
 #Puppet configuration for Vagrant hosts
 
-$subnet=101
+$subnet=103
 
 #define /etc/hosts for all machines
 class hostsfile {
