@@ -114,7 +114,7 @@ class schemafile {
         |                                 |                            +-----------+   |         |
         |                                 |                            | lanserver |   |         |
         +                                 +                            |           |   |         |
-       eth0                              eth0                  +--+eth1|  IP:41    |   |         |
+       eth0                              eth0                  +--+eth1|  IP:31    |   |         |
 +----------------+                   +----------+              |       |           |   |         |
 |    internet    |                   | firewall |              |       +-----------+   |         |
 |                |   10.$subnet.99.x/24  |          |              |                       |         |
@@ -123,7 +123,7 @@ class schemafile {
 +----------------+                   +----------+                      |      +-----------+      |
                                          eth2                          |      | lanclient |      |
                                           +                            |      |           |      |
-                                          |                            +-+eth1|  IP:42    |      |
+                                          |                            +-+eth1|  IP:32    |      |
                                           |10.$subnet.66.x/24                     |           |      |
                                           |                                   +-----------+      |
                                           +                                                      |
@@ -131,7 +131,7 @@ class schemafile {
                                      +-----------+                                               |
  github.com/                         | dmzserver |                                               |
    xonicman/vagrant-linux-labs       |           |                                               |
-   /xm-lab-firewall                  |   IP:31   |eth0+------------------------------------------+
+   /xm-lab-firewall                  |   IP:61   |eth0+------------------------------------------+
                                      |           |
  Created with asciiflow.com          |           |
                                      +-----------+
