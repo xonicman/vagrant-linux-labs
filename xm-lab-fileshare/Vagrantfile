@@ -23,26 +23,28 @@ Vagrant.configure("2") do |config|
     vb.memory = "128"
   end
 
+  SUBNET=101
+
   config.vm.define "master" do |node|
+        node.vm.hostname = "master.lab.itmz.pl"
+        node.vm.network "private_network", ip: "192.168.#{SUBNET}.210"
+	node.vm.synced_folder "puppetmaster", "/etc/puppet", owner: "root", group: "root"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
-        node.vm.network "private_network", ip: "192.168.16.100"
-        node.vm.hostname = "master.lab.itmz.pl"
-	node.vm.synced_folder "puppetmaster", "/etc/puppet", owner: "root", group: "root"
   end
 
   config.vm.define "server" do |node|
+        node.vm.hostname = "server.lab.itmz.pl"
+        node.vm.network "private_network", ip: "192.168.#{SUBNET}.211"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
-        node.vm.network "private_network", ip: "192.168.16.101"
-        node.vm.hostname = "server.lab.itmz.pl"
   end
 
   config.vm.define "client" do |node|
+        node.vm.hostname = "client.lab.itmz.pl"
+        node.vm.network "private_network", ip: "192.168.#{SUBNET}.212"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
-        node.vm.network "private_network", ip: "192.168.16.102"
-        node.vm.hostname = "client.lab.itmz.pl"
   end
 
 
