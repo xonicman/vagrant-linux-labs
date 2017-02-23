@@ -1,4 +1,4 @@
-$subnet=101
+$subnet=102
 
 node 'server' {
 
