@@ -28,6 +28,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "master" do |node|
         node.vm.hostname = "master.lab.itmz.pl"
         node.vm.network "private_network", ip: "192.168.#{SUBNET}.200"
+  	node.vm.provision "shell", inline: "apt-get update"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
 	node.vm.synced_folder "puppetmaster", "/etc/puppet", owner: "root", group: "root"
@@ -36,6 +37,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "agent01" do |node|
         node.vm.hostname = "agent01.lab.itmz.pl"
         node.vm.network "private_network", ip: "192.168.#{SUBNET}.201"
+  	node.vm.provision "shell", inline: "apt-get update"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
    
@@ -44,6 +46,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "agent02" do |node|
         node.vm.hostname = "agent02.lab.itmz.pl"
         node.vm.network "private_network", ip: "192.168.#{SUBNET}.202"
+  	node.vm.provision "shell", inline: "apt-get update"
   	node.vm.provision "shell", inline: "apt-get install puppet -y"
   	node.vm.provision "puppet" 
   end
@@ -52,6 +55,7 @@ Vagrant.configure("2") do |config|
         node.vm.hostname = "agent03.lab.itmz.pl"
         node.vm.network "private_network", ip: "192.168.#{SUBNET}.203"
 	node.vm.box = "geerlingguy/centos7"
+  	node.vm.provision "shell", inline: "sudo yum clean all; sleep 2"
   	node.vm.provision "shell", inline: "sudo yum install -y puppet; sleep 10"
   	node.vm.provision "puppet" 
   end
@@ -59,11 +63,11 @@ Vagrant.configure("2") do |config|
   config.vm.define "agent04" do |node|
         node.vm.hostname = "agent04.lab.itmz.pl"
         node.vm.network "private_network", ip: "192.168.#{SUBNET}.204"
-	node.vm.box = "geerlingguy/centos7"  	
+	node.vm.box = "geerlingguy/centos7"  
+  	node.vm.provision "shell", inline: "sudo yum clean all; sleep 2"
   	node.vm.provision "shell", inline: "sudo yum install -y puppet; sleep 10"
   	node.vm.provision "puppet" 
   end
-
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
