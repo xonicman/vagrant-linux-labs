@@ -42,6 +42,14 @@ class baseconfig {
   package { 'tree': ensure => installed, require => Exec['refresh-repository'], }
   package { 'screen': ensure => installed, require => Exec['refresh-repository'], }
 
+  #add TERM=xterm for better screen compatibility
+  exec { 'TERM xterm':
+    command => 'echo "TERM=xterm" >> /root/.bashrc',
+    unless  => 'grep "^TERM=xterm$" /root/.bashrc 2> /dev/null',
+    path    => [ '/bin/', '/sbin/' ],
+ }
+
+
 }
 
 #config for every puppet agent
