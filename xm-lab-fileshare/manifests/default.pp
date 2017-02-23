@@ -1,10 +1,12 @@
 #Puppet configuration for Vagrant hosts
 
+$subnet=101
+
 #define /etc/hosts for all machines
 class hostsfile {
-  host { 'master.lab.itmz.pl': ip => '192.168.16.100', host_aliases => [ 'master', 'puppetmaster', 'puppet', ], }
-  host { 'server.lab.itmz.pl': ip => '192.168.16.101', host_aliases => [ 'server', 's', ], }
-  host { 'client.lab.itmz.pl': ip => '192.168.16.102', host_aliases => [ 'client', 'c', ], }
+  host { 'master.lab.itmz.pl': ip => "192.168.$subnet.210", host_aliases => [ 'master', 'puppetmaster', 'puppet', ], }
+  host { 'server.lab.itmz.pl': ip => "192.168.$subnet.211", host_aliases => [ 'server', 's', ], }
+  host { 'client.lab.itmz.pl': ip => "192.168.$subnet.212", host_aliases => [ 'client', 'c', ], }
 }
 
 #base configuration, can be used for all nodes
