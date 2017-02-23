@@ -1,12 +1,14 @@
 #Puppet configuration for Vagrant hosts
 
+$subnet=101
+
 #define /etc/hosts for all machines
 class hostsfile {
-  host { 'master.lab.itmz.pl': ip => '192.168.17.100', host_aliases => [ 'master', 'puppetmaster', 'puppet', ], }
-  host { 'mysql01.lab.itmz.pl': ip => '192.168.17.101', host_aliases => [ 'mysql01', 'm1', ], }
-  host { 'mysql02.lab.itmz.pl': ip => '192.168.17.102', host_aliases => [ 'mysql02', 'm2', ], }
-  host { 'mysqlcluster.lab.itmz.pl': ip => '192.168.17.107', host_aliases => [ 'mysqlcluster', 'mysql', ], }
-  host { 'client.lab.itmz.pl': ip => '192.168.17.111', host_aliases => [ 'client', 'c', ], }
+  host { 'master.lab.itmz.pl': ip       => "192.168.$subnet.220", host_aliases => [ 'master', 'puppetmaster', 'puppet', ], }
+  host { 'mysql01.lab.itmz.pl': ip      => "192.168.$subnet.221", host_aliases => [ 'mysql01', 'm1', ], }
+  host { 'mysql02.lab.itmz.pl': ip      => "192.168.$subnet.222", host_aliases => [ 'mysql02', 'm2', ], }
+  host { 'mysqlcluster.lab.itmz.pl': ip => "192.168.$subnet.223", host_aliases => [ 'mysqlcluster', 'mysql', ], }
+  host { 'client.lab.itmz.pl': ip       => "192.168.$subnet.224", host_aliases => [ 'client', 'c', ], }
 }
 
 #base configuration, can be used for all nodes
@@ -46,6 +48,20 @@ class baseconfig {
         ensure => stopped,
         enable => false,
   }
+
+  #add TERM=xterm for better screen compatibility
+  exec { 'TERM xterm root':
+     command => 'echo "TERM=xterm" >> /root/.bashrc',
+     unless  => 'grep "^TERM=xterm$" /root/.bashrc 2> /dev/null',
+     path    => [ '/bin/', '/sbin/' ],
+   }
+
+  exec { 'TERM xterm vagrant':
+    command => 'echo "TERM=xterm" >> /home/vagrant/.bashrc',
+    unless  => 'grep "^TERM=xterm$" /home/vagrant/.bashrc 2> /dev/null',
+    path    => [ '/bin/', '/sbin/' ],
+  }
+
 }
 
 #config for every puppet agent
