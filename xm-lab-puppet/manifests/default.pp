@@ -1,13 +1,14 @@
 #Puppet configuration for Vagrant hosts
 
+$subnet=101
+
 #define /etc/hosts for all machines
 class hostsfile {
-  host { 'master.lab.itmz.pl': ip => '192.168.14.100', host_aliases => [ 'master', 'server', 'puppetmaster', 'puppet' ], }
-    host { 'agent01.lab.itmz.pl': ip => '192.168.14.101', host_aliases => 'agent01', }
-    host { 'agent02.lab.itmz.pl': ip => '192.168.14.102', host_aliases => 'agent02', }
-    host { 'agent03.lab.itmz.pl': ip => '192.168.14.103', host_aliases => 'agent03', }
-    host { 'agent04.lab.itmz.pl': ip => '192.168.14.104', host_aliases => 'agent04', }
-  #host { '': ip => '192.168.77.', host_aliases => [ 'client', 'cli' ], }	
+    host { 'master.lab.itmz.pl': ip  => "192.168.$subnet.200", host_aliases => [ 'master', 'server', 'puppetmaster', 'puppet' ], }
+    host { 'agent01.lab.itmz.pl': ip => "192.168.$subnet.201", host_aliases => 'agent01', }
+    host { 'agent02.lab.itmz.pl': ip => "192.168.$subnet.202", host_aliases => 'agent02', }
+    host { 'agent03.lab.itmz.pl': ip => "192.168.$subnet.203", host_aliases => 'agent03', }
+    host { 'agent04.lab.itmz.pl': ip => "192.168.$subnet.204", host_aliases => 'agent04', }
 }
 
 #base configuration, can be used for all nodes
@@ -40,7 +41,14 @@ class baseconfig {
   package { $vim_package: ensure => installed, require => Exec['refresh-repository'], }
   package { 'tree': ensure => installed, require => Exec['refresh-repository'], }
   package { 'screen': ensure => installed, require => Exec['refresh-repository'], }
-  #package { "": ensure => installed, require => Exec["refresh-repository"], }
+
+  #add TERM=xterm for better screen compatibility
+  exec { 'TERM xterm':
+    command => 'echo "TERM=xterm" >> /root/.bashrc',
+    unless  => 'grep "^TERM=xterm$" /root/.bashrc 2> /dev/null',
+    path    => [ '/bin/', '/sbin/' ],
+ }
+
 
 }
 
