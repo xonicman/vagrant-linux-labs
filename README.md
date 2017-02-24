@@ -16,7 +16,7 @@ vagrant ssh NAME_OF_MACHINE
 01. xm-lab-provisioned-by-puppet-1node - example of one Debian node provisioned by Puppet
 02. xm-lab-provisioned-by-puppet-2nodes - example of two Debian nodes provisioned by Puppet
 03. xm-lab-ssh - two nodes for client-server ssh connectivity & tests
-04. xm-lab-firewall - five nodes with firewall in the middle for firewall lab, LAN schema at /lab.box/schema.txt on all machines
+04. xm-lab-firewall - five nodes with firewall in the middle for firewall lab
 05. xm-lab-puppet - five nodes: puppetmaster, two Debian nodes, two CentOS nodes
 06. xm-lab-twonodes - debian8 & centos7, without extra config, for variuous lab training
 07. xm-lab-fileshare - demo for samba, ftp & nfs filesharing
@@ -25,6 +25,7 @@ vagrant ssh NAME_OF_MACHINE
 10. xm-lab-openvpn - 6 hosts (puppetmaster for initial config, vpnclient, vpnserver and 4 hosts to simulate site-to-site vpn)
 11. xm-lab-bacula - 4 hosts (puppetmaster for initial config, bacula server with all components, client01 and client02)
 12. xm-lab-hd - 1 node Debian8
+13. xm-lab-smtp - five Debian nodes with LAN, DMZ, Internet zones and Firewall in the middle to test any SMTP server
 
 ## Imporatant notice - ulimit
 
