@@ -28,7 +28,7 @@
                                      +-----------+                                               |
  github.com/                         | dmzserver |                                               |
    xonicman/vagrant-linux-labs       |           |                                               |
-   /xm-lab-firewall                  |   IP:61   |eth0+------------------------------------------+
+   /xm-lab-smtp                      |   IP:61   |eth0+------------------------------------------+
                                      |           |
  Created with asciiflow.com          |           |
                                      +-----------+
