@@ -1,7 +1,7 @@
 # vagrant-linux-labs
 Set of Vagrant configuration for Linux Labs.
 
-You need to install Vagrant and Oracle VirtualBox (tested on V 1.9.1 and OVB 5.1..14r112924).
+You need to install Vagrant and Oracle VirtualBox (tested on Vagrant 1.9.1 and Oracle Virtual Box 5.1..14r112924).
 
 Then:  
   
