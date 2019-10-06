@@ -5,11 +5,11 @@ You need to install Vagrant and Oracle VirtualBox (tested on Vagrant 1.9.1 and O
 
 Then:  
   
-git clone https://github.com/xonicman/vagrant-linux-labs.git  
-cd vagrant-linux-labs/NAME_OF_LAB  
-vagrant up  
-vagrant status  
-vagrant ssh NAME_OF_MACHINE  
+    git clone https://github.com/xonicman/vagrant-linux-labs.git  
+    cd vagrant-linux-labs/NAME_OF_LAB  
+    vagrant up  
+    vagrant status  
+    vagrant ssh NAME_OF_MACHINE  
 
 ## Vagrant configs
 
